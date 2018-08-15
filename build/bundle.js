@@ -155,6 +155,12 @@ var _express = __webpack_require__(7);
 
 var _express2 = _interopRequireDefault(_express);
 
+var _reactRouterConfig = __webpack_require__(18);
+
+var _Routes = __webpack_require__(10);
+
+var _Routes2 = _interopRequireDefault(_Routes);
+
 var _renderer = __webpack_require__(8);
 
 var _renderer2 = _interopRequireDefault(_renderer);
@@ -171,8 +177,7 @@ app.use(_express2.default.static('public'));
 app.get('*', function (req, res) {
     var store = (0, _createStore2.default)();
 
-    // Some logic to initialize
-    // and load data into the store
+    (0, _reactRouterConfig.matchRoutes)(_Routes2.default, req.path);
 
     res.send((0, _renderer2.default)(req, store));
 });
@@ -214,6 +219,8 @@ var _reactRouterDom = __webpack_require__(1);
 
 var _reactRedux = __webpack_require__(2);
 
+var _reactRouterConfig = __webpack_require__(18);
+
 var _Routes = __webpack_require__(10);
 
 var _Routes2 = _interopRequireDefault(_Routes);
@@ -227,7 +234,11 @@ exports.default = function (req, store) {
         _react2.default.createElement(
             _reactRouterDom.StaticRouter,
             { location: req.path, context: {} },
-            _react2.default.createElement(_Routes2.default, null)
+            _react2.default.createElement(
+                'div',
+                null,
+                (0, _reactRouterConfig.renderRoutes)(_Routes2.default)
+            )
         )
     ));
 
@@ -255,26 +266,24 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(1);
+var _HomePage = __webpack_require__(11);
 
-var _Home = __webpack_require__(11);
+var _HomePage2 = _interopRequireDefault(_HomePage);
 
-var _Home2 = _interopRequireDefault(_Home);
+var _UsersListPage = __webpack_require__(12);
 
-var _UsersList = __webpack_require__(12);
-
-var _UsersList2 = _interopRequireDefault(_UsersList);
+var _UsersListPage2 = _interopRequireDefault(_UsersListPage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function () {
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/users', component: _UsersList2.default })
-    );
-};
+exports.default = [{
+    path: '/',
+    component: _HomePage2.default,
+    exact: true
+}, {
+    path: '/users',
+    component: _UsersListPage2.default
+}];
 
 /***/ }),
 /* 11 */
@@ -483,6 +492,12 @@ exports.default = function () {
             return state;
     }
 };
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router-config");
 
 /***/ })
 /******/ ]);
