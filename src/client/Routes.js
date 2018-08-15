@@ -9,6 +9,7 @@ export default [
         exact: true
     },
     { 
+        loadData,
         path: '/users',
         component: UsersListPage
     }
