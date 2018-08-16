@@ -646,7 +646,7 @@ exports.default = function (req, store) {
         )
     ));
 
-    return '\n        <html>\n            <head>\n            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">\n                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">\n            </head>\n            <body>\n                <div id="root">' + content + '</div>\n                <script>\n                    window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n                </script>\n                <script src="bundle.js"></script>\n            </body>\n        </html>\n    ';
+    return '\n        <html>\n            <head>\n            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">\n                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">\n            </head>\n            <body>\n                <div id="root">' + content + '</div>\n                <script>\n                    window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n                </script>\n                <script src="bundle.js"></script>\n                <script src="bundle.js.map"></script>\n            </body>\n        </html>\n    ';
 };
 
 /***/ }),
@@ -792,3 +792,4 @@ var _actions = __webpack_require__(1);
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=bundle.js.map
