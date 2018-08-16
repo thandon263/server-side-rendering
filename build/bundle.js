@@ -71,12 +71,6 @@ module.exports = require("react");
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-router-config");
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -159,7 +153,19 @@ var fetchCurrentUser = exports.fetchCurrentUser = function fetchCurrentUser() {
 };
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router-config");
+
+/***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -200,16 +206,10 @@ exports.default = [_extends({}, _App2.default, {
 })];
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-router-dom");
-
-/***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-redux");
+module.exports = require("react-router-dom");
 
 /***/ }),
 /* 6 */
@@ -230,13 +230,13 @@ var _express = __webpack_require__(9);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _reactRouterConfig = __webpack_require__(1);
+var _reactRouterConfig = __webpack_require__(2);
 
 var _expressHttpProxy = __webpack_require__(10);
 
 var _expressHttpProxy2 = _interopRequireDefault(_expressHttpProxy);
 
-var _Routes = __webpack_require__(3);
+var _Routes = __webpack_require__(4);
 
 var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -311,13 +311,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterConfig = __webpack_require__(1);
+var _reactRouterConfig = __webpack_require__(2);
 
 var _Header = __webpack_require__(12);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _actions = __webpack_require__(2);
+var _actions = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -359,16 +359,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(4);
+var _reactRouterDom = __webpack_require__(5);
 
-var _reactRedux = __webpack_require__(5);
+var _reactRedux = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Header = function Header(_ref) {
     var auth = _ref.auth;
 
-    console.log('My auth status is', auth);
 
     var authButton = auth ? _react2.default.createElement(
         'a',
@@ -389,7 +388,7 @@ var Header = function Header(_ref) {
             _react2.default.createElement(
                 _reactRouterDom.Link,
                 { to: '/', className: 'brand-logo' },
-                'React SSR'
+                'SSR Dashboard'
             ),
             _react2.default.createElement(
                 'ul',
@@ -485,9 +484,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(5);
+var _reactRedux = __webpack_require__(3);
 
-var _actions = __webpack_require__(2);
+var _actions = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -517,7 +516,22 @@ var UsersList = function (_Component) {
             return this.props.users.map(function (user) {
                 return _react2.default.createElement(
                     'li',
-                    { key: user.id },
+                    { key: user.id, className: 'collection-item' },
+                    _react2.default.createElement(
+                        'i',
+                        { className: 'material-icons right green-text' },
+                        'phone'
+                    ),
+                    _react2.default.createElement(
+                        'i',
+                        { className: 'material-icons right' },
+                        'trending_up'
+                    ),
+                    _react2.default.createElement(
+                        'i',
+                        { className: 'material-icons right blue-text' },
+                        'edit'
+                    ),
                     user.name
                 );
             });
@@ -527,16 +541,42 @@ var UsersList = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                null,
+                { className: 'row' },
                 _react2.default.createElement(
-                    'h1',
-                    null,
-                    'Here\'s a big list of users:'
-                ),
-                _react2.default.createElement(
-                    'ul',
-                    null,
-                    this.renderUsers()
+                    'div',
+                    { className: 'col m6' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'card blue-grey darken-1' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'card-content' },
+                            _react2.default.createElement(
+                                'h1',
+                                { className: 'title white-text' },
+                                'list of users:'
+                            ),
+                            _react2.default.createElement(
+                                'ul',
+                                { className: 'collection' },
+                                this.renderUsers()
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'card-action' },
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#' },
+                                'Delegate User'
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#' },
+                                'Create New User'
+                            )
+                        )
+                    )
                 )
             );
         }
@@ -575,17 +615,17 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(16);
 
-var _reactRouterDom = __webpack_require__(4);
+var _reactRouterDom = __webpack_require__(5);
 
-var _reactRedux = __webpack_require__(5);
+var _reactRedux = __webpack_require__(3);
 
-var _reactRouterConfig = __webpack_require__(1);
+var _reactRouterConfig = __webpack_require__(2);
 
 var _serializeJavascript = __webpack_require__(17);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
-var _Routes = __webpack_require__(3);
+var _Routes = __webpack_require__(4);
 
 var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -606,7 +646,7 @@ exports.default = function (req, store) {
         )
     ));
 
-    return '\n        <html>\n            <head>\n                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">\n            </head>\n            <body>\n                <div id="root">' + content + '</div>\n                <script>\n                    window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n                </script>\n                <script src="bundle.js"></script>\n            </body>\n        </html>\n    ';
+    return '\n        <html>\n            <head>\n            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">\n                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">\n            </head>\n            <body>\n                <div id="root">' + content + '</div>\n                <script>\n                    window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n                </script>\n                <script src="bundle.js"></script>\n            </body>\n        </html>\n    ';
 };
 
 /***/ }),
@@ -711,7 +751,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _actions = __webpack_require__(2);
+var _actions = __webpack_require__(1);
 
 exports.default = function () {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -748,7 +788,7 @@ exports.default = function () {
     }
 };
 
-var _actions = __webpack_require__(2);
+var _actions = __webpack_require__(1);
 
 /***/ })
 /******/ ]);
