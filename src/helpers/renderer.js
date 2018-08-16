@@ -27,6 +27,7 @@ export default (req, store) => {
                     window.INITIAL_STATE = ${serialize(store.getState())}
                 </script>
                 <script src="bundle.js"></script>
+                <script src="bundle.map"></script>
             </body>
         </html>
     `;
